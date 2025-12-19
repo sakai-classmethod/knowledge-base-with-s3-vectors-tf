@@ -13,6 +13,9 @@ Amazon Bedrock Knowledge Base を S3 Vectors で構築する Terraform 構成。
 
 ```bash
 cd terraform
+cp terraform.tfvars.example terraform.tfvars
+# terraform.tfvars を編集
+
 terraform init
 terraform plan
 terraform apply
