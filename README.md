@@ -1,23 +1,15 @@
-# kb-s3-vectors-tf
+# Knowledge Base with S3 Vectors (Terraform)
 
-ブログ: https://dev.classmethod.jp/articles/terraform-aws-s3-vectors-bedrock-rag/
+Amazon Bedrock Knowledge Base を S3 Vectors で構築する Terraform 構成。
 
 ## 構成
 
-```bash
-.
-├── README.md
-└── terraform
-    ├── main.tf
-    ├── outputs.tf
-    ├── providers.tf
-    ├── terraform.tfstate
-    ├── terraform.tfvars
-    ├── terraform.tfvars.example
-    └── variables.tf
-```
+- S3 Vectors (ベクトルバケット + インデックス)
+- Bedrock Knowledge Base
+- S3 バケット (データソース用)
+- IAM ロール
 
-## 使い方
+## 使用方法
 
 ```bash
 cd terraform
@@ -25,3 +17,11 @@ terraform init
 terraform plan
 terraform apply
 ```
+
+## 変数
+
+| 名前           | 説明           | デフォルト  |
+| -------------- | -------------- | ----------- |
+| `project_name` | プロジェクト名 | (必須)      |
+| `aws_region`   | AWS リージョン | `us-east-1` |
+| `environment`  | 環境名         | `dev`       |
