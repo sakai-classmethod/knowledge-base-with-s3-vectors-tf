@@ -1,9 +1,9 @@
 locals {
-  name_prefix       = "${var.project_name}-${var.environment}"
-  embedding_model   = "amazon.titan-embed-text-v2:0"
-  embedding_dim     = 1024
-  distance_metric   = "euclidean"
-  data_type         = "float32"
+  name_prefix     = "${var.project_name}-${var.environment}"
+  embedding_model = "amazon.titan-embed-text-v2:0"
+  embedding_dim   = 1024
+  distance_metric = "euclidean"
+  data_type       = "float32"
 }
 
 data "aws_region" "current" {}
@@ -103,6 +103,15 @@ resource "aws_s3vectors_index" "main" {
   data_type       = local.data_type
   dimension       = local.embedding_dim
   distance_metric = local.distance_metric
+  metadata_configuration {
+    non_filterable_metadata_keys = [
+      "AMAZON_BEDROCK_TEXT",
+      "AMAZON_BEDROCK_METADATA",
+      "x-amz-bedrock-kb-source-uri",
+      "x-amz-bedrock-kb-chunk-id",
+      "x-amz-bedrock-kb-data-source-id"
+    ]
+  }
 }
 
 # ------------------------------------------------------------------------------
